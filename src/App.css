@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,18 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+.login-title {
+
+  border-bottom: 3px solid blue;
+}
+
+.login-btn {
+
+  border: None;
+  background-color: blue;
+  color: white;
+  width: 100%;
+  font-size: 1.2 rem;
 }
