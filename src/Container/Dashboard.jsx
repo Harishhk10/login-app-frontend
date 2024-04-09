@@ -44,7 +44,6 @@ const DashBoard = () => {;
         }}
       >
         <h1>Welcome to Dashboard</h1>
-        <p>{"s"}</p>
       </div>
     </div>
   );

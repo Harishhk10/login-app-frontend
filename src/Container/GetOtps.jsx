@@ -1,10 +1,8 @@
 // import "./App.css";
 import { useState, useEffect, useContext, createContext } from "react";
 import axios from "axios";
-import Notificationalert from "../components/Notificationalert";
 import LeftSideImg from "./CommonTemplate";
 import { useNavigate } from "react-router-dom";
-
 
 function GetOtp() {
   const navigate = useNavigate();
@@ -30,30 +28,30 @@ function GetOtp() {
 
     setIsValid(isValidInput);
   }, [inputValue]);
-  console.log(isValid);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     await axios
       .post("http://localhost:4000/api/login/send-otp", {
-        /* Actual data object here */
         user: inputValue,
       })
       .then((res) => {
         if (res?.status === 200 || res?.status === 201) {
           let data = res?.data;
+
+          if (data?.userType === "phone") {
+            alert("your otp is :" + data.otp);
+          }
           navigate("/verify-otp");
 
           localStorage.setItem("user", data?.user);
         } else {
-          alert("");
-          throw new Error("Non-200 status code received");
+          alert("please refresh page");
         }
       })
 
       .catch((err) => {
         alert("please refresh the page ");
-        // Handle error
       });
   };
 

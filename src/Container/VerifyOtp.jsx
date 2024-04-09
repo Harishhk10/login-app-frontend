@@ -1,16 +1,16 @@
-// import "./App.css";
 import { useState, useEffect, useContext } from "react";
 import React from "react";
 import axios from "axios";
-import Notificationalert from "../components/Notificationalert";
 import LeftSideImg from "./CommonTemplate";
 import { useNavigate } from "react-router-dom";
 
 export const VerifyOtp = () => {
   let local = localStorage.getItem("user");
   const navigate = useNavigate();
-  // console.log(userData, "userData");
-  const [userCheck, setUserCheck] = useState(local);
+
+  if (!local) {
+    navigate("/");
+  }
 
   const [inputValue, setInputValue] = useState("");
   const [isValid, setIsValid] = useState(true);
@@ -28,38 +28,24 @@ export const VerifyOtp = () => {
     setInputValue(inputValue);
     setIsValid(isValidInput);
   }, [inputValue]);
-  console.log(isValid);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    <Notificationalert
-      title="Success"
-      content="This is a success message."
-      type="success"
-    />;
-
     await axios
       .post("http://localhost:4000/api/login/verify-otp", {
-        /* Actual data object here */
         otp: inputValue,
         user: local,
       })
-      // 17962
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
-          // Proceed with your logic
-
           navigate("/welcome");
         } else {
-          // Handle non-200 status code
-          throw new Error("Non-200 status code received");
+          alert("please refresh the page ");
         }
       })
       .catch((err) => {
-        // Handle error
+        alert("please refresh the page ");
       });
-
-    // Handle form submission logic here
   };
 
   return (
@@ -113,5 +99,3 @@ export const VerifyOtp = () => {
     </div>
   );
 };
-// VerifyOtp;
-//
