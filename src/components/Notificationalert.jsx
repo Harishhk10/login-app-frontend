@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Alert from "react-bootstrap/Alert";
 
 function Notificationalert(title, content, type) {
-  console.log(title, content, type);
+  console.log(title, content, type,'checkk');
   const [show, setShow] = useState(true);
 
   useEffect(() => {

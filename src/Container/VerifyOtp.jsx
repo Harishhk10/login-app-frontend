@@ -1,13 +1,17 @@
 // import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import React from "react";
 import axios from "axios";
 import Notificationalert from "../components/Notificationalert";
 import LeftSideImg from "./CommonTemplate";
+import { useNavigate } from "react-router-dom";
 
-function VerifyOtp(props) {
-  console.log(props);
-  console.log("getopt ", props?.user);
+export const VerifyOtp = () => {
+  let local = localStorage.getItem("user");
+  const navigate = useNavigate();
+  // console.log(userData, "userData");
+  const [userCheck, setUserCheck] = useState(local);
+
   const [inputValue, setInputValue] = useState("");
   const [isValid, setIsValid] = useState(true);
   const [touched, setTouched] = useState(false); // State to track if input field is touched
@@ -38,11 +42,14 @@ function VerifyOtp(props) {
       .post("http://localhost:4000/api/login/verify-otp", {
         /* Actual data object here */
         otp: inputValue,
+        user: local,
       })
-
+      // 17962
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
           // Proceed with your logic
+
+          navigate("/welcome");
         } else {
           // Handle non-200 status code
           throw new Error("Non-200 status code received");
@@ -67,7 +74,7 @@ function VerifyOtp(props) {
               className="form-control"
               name="user"
               id="floatingInput"
-              value={props.user}
+              value={local}
               disabled
             />
             <label for="floatingInput">Email address or phone number</label>
@@ -105,5 +112,6 @@ function VerifyOtp(props) {
       </div>
     </div>
   );
-}
-export default VerifyOtp;
+};
+// VerifyOtp;
+//

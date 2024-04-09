@@ -1,7 +1,7 @@
-import React from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
+import React from "react";
+import { Navbar, Container, Nav } from "react-bootstrap";
 
-const DashBoard = () => {
+const DashBoard = () => {;
   return (
     <div className="dashboard">
       <Navbar
@@ -35,8 +35,16 @@ const DashBoard = () => {
         </Container>
       </Navbar>
 
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
         <h1>Welcome to Dashboard</h1>
+        <p>{"s"}</p>
       </div>
     </div>
   );
